@@ -1,13 +1,20 @@
 package org.example.domain;
 
 
+import com.sun.istack.NotNull;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
 @Entity
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Please fill the form")
+    @Length(max = 2048, message = "Message too long(more than 2KB")
     private String text;
     private String tag;
 

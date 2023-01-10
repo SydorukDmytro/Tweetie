@@ -4,15 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff828b90-84d6-4bf4-a9a5-3d34161a63cb" name="Changes" comment="Bootstrap &amp;&amp; Mail">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db.migration/V1__Init_DB.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db.migration/V2__Add_admin.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.ftlh" afterDir="false" />
+    <list default="true" id="ff828b90-84d6-4bf4-a9a5-3d34161a63cb" name="Changes" comment="Flyway migration">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/config/BeanConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/ControllerUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db.migration/V3__Encode_passwords.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domain/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domain/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domain/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/navbar.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/navbar.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +81,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ACTIVE_PROFILES" />
       <module name="Tweetie" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.Application" />
       <method v="2">
@@ -101,7 +105,12 @@
       <workItem from="1673226147725" duration="144000" />
       <workItem from="1673274898350" duration="8163000" />
       <workItem from="1673289013607" duration="8787000" />
-      <workItem from="1673308103220" duration="4613000" />
+      <workItem from="1673308103220" duration="5273000" />
+      <workItem from="1673364231551" duration="185000" />
+      <workItem from="1673366061784" duration="583000" />
+      <workItem from="1673366675810" duration="318000" />
+      <workItem from="1673367098241" duration="3879000" />
+      <workItem from="1673377229094" duration="2553000" />
     </task>
     <task id="LOCAL-00001" summary="Added freemarker">
       <created>1673276383937</created>
@@ -124,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673299256727</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Flyway migration">
+      <created>1673312753402</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1673312753402</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,7 +164,8 @@
     <MESSAGE value="Added freemarker" />
     <MESSAGE value="Updated security/added images" />
     <MESSAGE value="Bootstrap &amp;&amp; Mail" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bootstrap &amp;&amp; Mail" />
+    <MESSAGE value="Flyway migration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Flyway migration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
