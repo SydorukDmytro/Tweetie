@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff828b90-84d6-4bf4-a9a5-3d34161a63cb" name="Changes" comment="Flyway migration">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/config/BeanConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/ControllerUtils.java" afterDir="false" />
+    <list default="true" id="ff828b90-84d6-4bf4-a9a5-3d34161a63cb" name="Changes" comment="Password encoder">
       <change afterPath="$PROJECT_DIR$/src/main/resources/db.migration/V3__Encode_passwords.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/config/MvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/config/MvcConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domain/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domain/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.ftlh" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.ftlh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +106,8 @@
       <workItem from="1673366061784" duration="583000" />
       <workItem from="1673366675810" duration="318000" />
       <workItem from="1673367098241" duration="3879000" />
-      <workItem from="1673377229094" duration="2553000" />
+      <workItem from="1673377229094" duration="2667000" />
+      <workItem from="1673382770070" duration="3454000" />
     </task>
     <task id="LOCAL-00001" summary="Added freemarker">
       <created>1673276383937</created>
@@ -140,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673312753402</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Password encoder">
+      <created>1673380110975</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1673380110975</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,7 +169,8 @@
     <MESSAGE value="Updated security/added images" />
     <MESSAGE value="Bootstrap &amp;&amp; Mail" />
     <MESSAGE value="Flyway migration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Flyway migration" />
+    <MESSAGE value="Password encoder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Password encoder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
