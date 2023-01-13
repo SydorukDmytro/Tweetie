@@ -30,6 +30,7 @@ public class Message {
     public Message(String text, String tag, User user) {
         this.text = text;
         this.tag = tag;
+        this.author = user;
     }
 
     public String getFilename() {

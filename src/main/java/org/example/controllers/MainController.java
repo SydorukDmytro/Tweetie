@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +21,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+
 
 @Controller
 public class MainController {
@@ -38,8 +39,9 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
-        Iterable<Message> messages = messageRepository.findAll();
+    public String main(@RequestParam(required = false, defaultValue = "") String filter,
+                       Model model) {
+        Iterable<Message> messages;
 
         if (filter != null && !filter.isEmpty()) {
             messages = messageRepository.findByTag(filter);
@@ -56,12 +58,74 @@ public class MainController {
     @PostMapping("/main")
     public String add(
             @AuthenticationPrincipal User user,
-            @RequestParam String text,
-            @RequestParam String tag, Map<String, Object> model,
+            @RequestParam(defaultValue = "") String text,
+            @RequestParam(defaultValue = "") String tag,
+            Model model,
             @RequestParam("file") MultipartFile file
     ) throws IOException {
         Message message = new Message(text, tag, user);
+        saveFile(message, file);
 
+        messageRepository.save(message);
+
+        Iterable<Message> messages = messageRepository.findAll();
+
+        model.addAttribute("messages", messages);
+
+        return "main";
+    }
+
+    @GetMapping(value = "/img/{imageUrl}")
+    public @ResponseBody byte[] image(@PathVariable String imageUrl) throws IOException {
+        String url = "/D:/MyApps/Tweetie/upload/" + imageUrl;
+        InputStream in = new FileInputStream(url);
+        return IOUtils.toByteArray(in);
+    }
+
+    @GetMapping("/user-messages/{user}")
+    public String userMessages(
+            @AuthenticationPrincipal User currentUser,
+            @PathVariable User user,
+            Model model,
+            @RequestParam(required = false) Message message
+    ){
+        Set<Message> messages = user.getMessages();
+        model.addAttribute("subscriptionsCount", user.getSubscriptions().size());
+        model.addAttribute("subscribersCount", user.getSubscribers().size());
+        model.addAttribute("isSubscriber", user.getSubscribers().contains(currentUser));
+        model.addAttribute("messages", messages);
+        model.addAttribute("userAccount", user);
+        model.addAttribute("message", message);
+        model.addAttribute("isCurrentUser", currentUser.equals(user));
+
+        return "userMessages";
+    }
+
+    @PostMapping("/user-messages/{user}")
+    public String updateMessage(
+            @AuthenticationPrincipal User currentUser,
+            @PathVariable Long user,
+            @RequestParam("id") Message message,
+            @RequestParam("text") String text,
+            @RequestParam("tag") String tag,
+            @RequestParam(value = "file", required = false) MultipartFile file
+    ) throws IOException {
+        if(message.getAuthor().equals(currentUser)){
+            if(!StringUtils.isEmpty(text)){
+                message.setText(text);
+            }
+            if(!StringUtils.isEmpty(tag)){
+                message.setTag(tag);
+            }
+            saveFile(message, file);
+            messageRepository.save(message);
+        }
+
+        return "redirect:/user-messages/" + user;
+    }
+
+    public void saveFile(Message message,
+                         @RequestParam MultipartFile file) throws IOException {
         if (file != null && !file.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(uploadPath);
 
@@ -76,20 +140,5 @@ public class MainController {
 
             message.setFilename(resultFilename);
         }
-
-        messageRepository.save(message);
-
-        Iterable<Message> messages = messageRepository.findAll();
-
-        model.put("messages", messages);
-
-        return "main";
-    }
-
-    @GetMapping(value = "/img/{imageUrl}")
-    public @ResponseBody byte[] image(@PathVariable String imageUrl) throws IOException {
-        String url = "/D:/MyApps/Tweetie/upload/" + imageUrl;
-        InputStream in = new FileInputStream(url);
-        return IOUtils.toByteArray(in);
     }
 }

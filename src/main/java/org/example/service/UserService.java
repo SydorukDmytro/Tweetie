@@ -4,6 +4,7 @@ import org.example.domain.Role;
 import org.example.domain.User;
 import org.example.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,6 +26,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Value("${hostname}")
+    private String hostname;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
@@ -36,8 +40,10 @@ public class UserService implements UserDetailsService {
         if(!StringUtils.isEmpty(user.getEmail())){
             String message = String.format(
                     "Hello, %s! \n" +
-                            "Welcome to Tweetie. Please visit next link: http://localhost:8080/activate/%s",
-                    user.getUsername(), user.getActivationCode()
+                            "Welcome to Tweetie. Please visit next link: http://%s/activate/%s",
+                    user.getUsername(),
+                    hostname,
+                    user.getActivationCode()
             );
             stmpMailSender.send(user.getEmail(), "Activation Code", message);
         }
@@ -111,5 +117,26 @@ public class UserService implements UserDetailsService {
         if(isEmailChanged){
             sendMessage(user);
         }
+    }
+
+    public void subscribe(User currentUser, User user) {
+        user.getSubscribers().add(currentUser);
+        userRepository.save(user);
+    }
+
+    public void unsubscribe(User currentUser, User user) {
+        user.getSubscribers().remove(currentUser);
+        userRepository.save(user);
+    }
+
+    public User findById(Long id){
+        Optional<User> foundUser = userRepository.findById(id);
+        User user;
+        if(foundUser.isPresent()){
+            user = foundUser.get();
+        }else {
+            return new User();
+        }
+        return user;
     }
 }
