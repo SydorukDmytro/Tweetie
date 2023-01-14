@@ -128,15 +128,4 @@ public class UserService implements UserDetailsService {
         user.getSubscribers().remove(currentUser);
         userRepository.save(user);
     }
-
-    public User findById(Long id){
-        Optional<User> foundUser = userRepository.findById(id);
-        User user;
-        if(foundUser.isPresent()){
-            user = foundUser.get();
-        }else {
-            return new User();
-        }
-        return user;
-    }
 }

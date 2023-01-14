@@ -1,7 +1,6 @@
 package org.example.domain;
 
 
-import com.sun.istack.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
